@@ -1,0 +1,26 @@
+[
+    {
+        "_id": "635d0babbda0294d8d8d3f76",
+        "name": "De Caprio",
+        "email": "janeholloway@caxt.com",
+        "post": "The greatest glory in living lies not in never falling, but in rising every time we fall.",
+        "picture": "https://i.ibb.co/4KvDYQd/decap.png",
+        "likes": 0
+    },
+    {
+        "_id": "635d0bab762cb9c9dd4da5a3",
+        "name": "Chris Evans",
+        "email": "laurenknapp@caxt.com",
+        "post": "Your time is limited, so don't waste it living someone else's life. Don't be trapped by dogma – which is living with the results of other people's thinking.",
+        "picture": "https://i.ibb.co/9GSFk4V/evans.png",
+        "likes": 0
+    },
+    {
+        "_id": "635d0babcd2003de10952ad3",
+        "name": "Tom Cruise",
+        "email": "simonmcpherson@caxt.com",
+        "post": "If you look at what you have in life, you'll always have more. If you look at what you don't have in life, you'll never have enough. ",
+        "picture": "https://i.ibb.co/bzrghM8/tom.png",
+        "likes": 0
+    }
+]
