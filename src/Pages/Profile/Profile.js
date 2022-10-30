@@ -12,7 +12,7 @@ const Profile = () => {
 
     const [user, loading, userError] = useAuthState(auth);
     const { isLoading, error, data: posts } = useQuery('posts', () =>
-        fetch(`http://localhost:5000/post/${user.email}`).then(res =>
+        fetch(`https://lit-wildwood-52199.herokuapp.com/post/${user.email}`).then(res =>
             res.json()
         ));
 

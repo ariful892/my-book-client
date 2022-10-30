@@ -11,6 +11,7 @@ const CreatePost = () => {
 
     const handlePost = (event) => {
 
+        event.preventDefault();
         const postText = event.target.post.value;
 
         const postDetail = {
@@ -24,7 +25,7 @@ const CreatePost = () => {
         console.log(postDetail);
 
         // send review to database
-        fetch('http://localhost:5000/post', {
+        fetch('https://lit-wildwood-52199.herokuapp.com/post', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

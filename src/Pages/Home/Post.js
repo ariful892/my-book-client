@@ -13,8 +13,9 @@ const Post = ({ postDetail, refetch }) => {
     const [like, setLike] = useState(false);
     const [comment, seComment] = useState(false);
     const [user, loading, error] = useAuthState(auth);
-    const { _id, name, post, likes } = postDetail;
-    let newLikes = 0;
+    let { _id, name, picture, post, likes } = postDetail;
+    let newLikes = likes;
+    let updatedPost;
 
     if (loading) {
         return <Loading></Loading>
@@ -22,25 +23,30 @@ const Post = ({ postDetail, refetch }) => {
 
     const handleLike = () => {
 
-        if (!like) {
-            newLikes = likes + 1;
-            console.log(newLikes)
-            setLike(true);
-        }
         if (like) {
-            newLikes = newLikes - 1;
+            newLikes = newLikes + 0;
+            likes = newLikes;
+            updatedPost = { ...postDetail, likes };
             console.log(newLikes)
             setLike(false);
         }
+        else {
+            newLikes = newLikes + 1;
+            likes = newLikes;
+            updatedPost = { ...postDetail, likes };
+            console.log(newLikes)
+            setLike(true);
+        }
+
 
         const currentLikes = { likes: likes };
 
-        fetch(`http://localhost:5000/post/${_id}`, {
+        fetch(`https://lit-wildwood-52199.herokuapp.com/post/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(currentLikes)
+            body: JSON.stringify(updatedPost)
         })
             .then(res => res.json())
             .then(data => {
@@ -64,10 +70,10 @@ const Post = ({ postDetail, refetch }) => {
             <div>
                 <div className='flex'>
                     <div className="avatar ">
-                        {user?.photoURL && <div className="w-8 rounded-full">
-                            <img src={user?.photoURL} />
+                        {picture && <div className="w-8 rounded-full">
+                            <img src={picture} />
                         </div>}
-                        {!user?.photoURL && <div className="w-8 rounded-full">
+                        {!picture && <div className="w-8 rounded-full">
                             <FontAwesomeIcon className='w-6 mr-1' icon={faUser} />
                         </div>}
                     </div>
