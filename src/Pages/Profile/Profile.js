@@ -1,5 +1,5 @@
 import React from 'react';
-import Post from '../Home/Post';
+import CreatePost from '../Home/CreatePost';
 
 const Profile = () => {
     return (
@@ -11,7 +11,7 @@ const Profile = () => {
                     </div>
                 </div>
                 <h2 className='text-center font-bold text-xl mt-3'>Ariful Islam</h2>
-                <Post></Post>
+                <CreatePost></CreatePost>
             </div>
         </div>
     );
