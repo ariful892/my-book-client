@@ -5,6 +5,8 @@ import notification from '../../assets/icons/bell-solid.svg'
 import auth from '../../firebase.init';
 import { signOut } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 const Navbar = () => {
 
@@ -61,17 +63,20 @@ const Navbar = () => {
                         <li>
                             <Link to={'/profile'}>
                                 <label className="avatar">
+                                    {user?.photoURL && <div className="w-8 rounded-full">
+                                        <img src={user?.photoURL} />
+                                    </div>}
+                                    {!user?.photoURL && <div className="w-8 rounded-full">
+                                        <FontAwesomeIcon className='w-6 mr-1' icon={faUser} />
+                                    </div>}
 
-                                    <div className="w-8 rounded-full">
-                                        <img src="https://placeimg.com/80/80/people" />
-                                    </div>
                                 </label>
                             </Link>
                         </li>
                         <li className='list-none'>{user ?
                             <button onClick={handleSignOut} className="btn btn-ghost text-red-500">Signout</button>
                             :
-                            <Link to='/login'>Login</Link>
+                            <Link className='text-primary' to='/login'>Login</Link>
                         }</li>
                     </ul>
 

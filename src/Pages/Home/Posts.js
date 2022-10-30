@@ -5,7 +5,7 @@ import Post from './Post';
 
 const Posts = () => {
 
-    const { isLoading, error, data: posts } = useQuery('posts', () =>
+    const { isLoading, error, data: posts, refetch } = useQuery('posts', () =>
         fetch(`http://localhost:5000/post`).then(res =>
             res.json()
         ));
@@ -20,6 +20,7 @@ const Posts = () => {
                 posts.map(post => <Post
                     key={post._id}
                     postDetail={post}
+                    refetch={refetch}
                 ></Post>)
             }
         </div>
