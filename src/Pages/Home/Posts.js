@@ -6,7 +6,7 @@ import Post from './Post';
 const Posts = () => {
 
     const { isLoading, error, data: posts, refetch } = useQuery('posts', () =>
-        fetch(`https://lit-wildwood-52199.herokuapp.com/post`).then(res =>
+        fetch(`http://localhost:5000/post`).then(res =>
             res.json()
         ));
 

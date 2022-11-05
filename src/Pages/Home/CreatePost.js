@@ -4,10 +4,25 @@ import React, { useRef } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 
-const CreatePost = () => {
+const CreatePost = ({ refetch }) => {
 
     const postRef = useRef('');
     const [user, loading, error] = useAuthState(auth);
+
+    const errorMessage = () => {
+        <div className="alert alert-success">
+            <div>
+                <span>Failed to post</span>
+            </div>
+        </div>
+    }
+    const successMessage = () => {
+        <div className="alert alert-success">
+            <div>
+                <span>Post successfully done</span>
+            </div>
+        </div>
+    }
 
     const handlePost = (event) => {
 
@@ -19,13 +34,14 @@ const CreatePost = () => {
             email: user.email,
             post: postText,
             picture: user.photoURL,
-            likes: 0
+            likes: [],
+            comments: []
         }
 
         console.log(postDetail);
 
         // send review to database
-        fetch('https://lit-wildwood-52199.herokuapp.com/post', {
+        fetch('http://localhost:5000/post', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -35,13 +51,11 @@ const CreatePost = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.insertedId) {
-                    console.log('Post successfully done');
-                    // toast.success('Product is added');
-                    // reset();
+                    refetch();
+                    successMessage()
                 }
                 else (
-                    console.log('Failed to post')
-                    // toast.error('Failed to add')
+                    errorMessage()
                 )
             })
     }

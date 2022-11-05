@@ -12,7 +12,7 @@ const Profile = () => {
 
     const [user, loading, userError] = useAuthState(auth);
     const { isLoading, error, data: posts } = useQuery('posts', () =>
-        fetch(`https://lit-wildwood-52199.herokuapp.com/post/${user.email}`).then(res =>
+        fetch(`http://localhost:5000/post/${user.email}`).then(res =>
             res.json()
         ));
 
@@ -22,7 +22,7 @@ const Profile = () => {
 
 
     return (
-        <div className='flex justify-center mt-8'>
+        <div className='flex justify-center mt-8 shadow-xl rounded-lg'>
             <div>
                 <div className="avatar flex justify-center">
                     {user?.photoURL && <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
